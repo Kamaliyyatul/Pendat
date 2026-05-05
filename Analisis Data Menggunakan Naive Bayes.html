@@ -1,0 +1,662 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>1. Analisis Data Campuran Menggunakan Naive Bayes &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Analisis Data Menggunakan Naive Bayes';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/picture.jpg" class="logo__image only-light" alt="My sample book - Home"/>
+    <img src="_static/picture.jpg" class="logo__image only-dark pst-js-only" alt="My sample book - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    240411100211 Kamaliyyatul Bararah
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Business%20Understanding.html">Business Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Data%20Understanding.html">Data Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Data%20Preparation.html">Data Preparation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Modelling.html">Modelling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Deploymen.html">Deploymen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tugas%20Missing%20Values.html">1. Missing Values dengan Metode WKNN</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="UTS.html">UTS | Analisa Kesuburan Tanah</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FAnalisis Data Menggunakan Naive Bayes.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Analisis Data Menggunakan Naive Bayes.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>1. Analisis Data Campuran Menggunakan Naive Bayes</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengertian">1.1 Pengertian</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jenis-jenis-naive-bayes">1.2 Jenis-Jenis Naive Bayes:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perhitungan-menggunakan-knime">2. Perhitungan Menggunakan Knime</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tabel-data-asuransi-kesehatan-sebelum-proses-klasifikasi">2.1 Tabel Data Asuransi Kesehatan Sebelum Proses Klasifikasi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#script-python">2.2 Script Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#output">Output</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="analisis-data-campuran-menggunakan-naive-bayes">
+<h1>1. Analisis Data Campuran Menggunakan Naive Bayes<a class="headerlink" href="#analisis-data-campuran-menggunakan-naive-bayes" title="Link to this heading">#</a></h1>
+<section id="pengertian">
+<h2>1.1 Pengertian<a class="headerlink" href="#pengertian" title="Link to this heading">#</a></h2>
+<p>Naive bayes adalah algoritma klasifikasi yang digunakan untuk menentukan kategori suatu data berdasarkan fitur yang dimilikinya. Metode ini didasarkan pada Teorema Bayes dalam teori probabilitas.Cara kerjanya adalah dengan menghitung kemungkinan dari setiap fitur, lalu digunakan untuk memprediksi kelas data tersebut.</p>
+<p>Pada analisis ini digunakan dataset campuran yang berasal dari platform kaggle. Berikut adalah  tautan datasetnya:
+<a class="reference external" href="https://www.kaggle.com/datasets/mosapabdelghany/medical-insurance-cost-dataset?resource=download">Klik di sini</a>
+Dataset ini berisi data biaya asuransi kesehatan dari 1338 individu. Dataset mencakup berbagai variabel demografis dan karakteristik kesehatan, seperti usia, jenis kelamin, indeks massa tubuh (BMI), jumlah anak, status merokok, serta wilayah tempat tinggal di Amerika Serikat. Variabel target dalam dataset ini adalah charges, yaitu besarnya biaya asuransi kesehatan yang dibebankan kepada masing-masing individu.</p>
+</section>
+<section id="jenis-jenis-naive-bayes">
+<h2>1.2 Jenis-Jenis Naive Bayes:<a class="headerlink" href="#jenis-jenis-naive-bayes" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Gaussian Naive Bayes
+Gaussian Naive Bayes adalah metode Naive Bayes yang digunakan untuk data numerik kontinu dengan asumsi distribusi normal (Gaussian). Parameter yang digunakan adalah rata-rata <span class="math notranslate nohighlight">\((μC)\)</span> dan varians <span class="math notranslate nohighlight">\((σ^2C)\)</span> untuk menghitung probabilitas suatu data terhadap kelas tertentu. Berikut rumusnya:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[
+P(x_i \mid C) = \frac{1}{\sqrt{2\pi\sigma_C^2}} \exp\left(-\frac{(x_i - \mu_C)^2}{2\sigma_C^2}\right)
+\]</div>
+<ol class="arabic simple" start="2">
+<li><p>Multinomial Naive Bayes
+Multinomial Naive Bayes adalah metode Naive Bayes yang digunakan untuk data berbasis frekuensi atau hitungan. Model ini menghitung probabilitas berdasarkan jumlah kemunculan suatu fitur dalam data, seperti jumlah kata dalam dokumen. Berikut rumusnya:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[
+P(x_j \mid C_i) = \frac{\text{count}(x_j, C_i)}{\sum_k \text{count}(x_k, C_i)}
+\]</div>
+<ol class="arabic simple" start="3">
+<li><p>Bernoulli Naive Bayes
+Bernoulli Naive Bayes adalah metode Naive Bayes yang digunakan untuk data biner (0 atau 1). Model ini hanya memperhatikan ada atau tidaknya suatu fitur dalam data, bukan jumlah kemunculannya. Berikut rumusnya:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[
+P(x_j \mid C_i) = p^{x_j} (1 - p)^{(1 - x_j)}
+\]</div>
+<ol class="arabic simple" start="4">
+<li><p>Categorical Naive Bayes
+Categorical Naive Bayes adalah metode Naive Bayes yang digunakan untuk data berbentuk kategori. Model ini menghitung probabilitas berdasarkan frekuensi kemunculan setiap kategori dalam suatu kelas. Berikut rumusnya:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[
+P(x_j \mid C_i) = \frac{N_{x_j,C_i} + \alpha}{N_{C_i} + \alpha \cdot n}
+\]</div>
+<ol class="arabic simple" start="5">
+<li><p>Complement Naive Bayes
+Complement Naive Bayes adalah pengembangan dari Naive Bayes yang digunakan untuk mengatasi data yang tidak seimbang (imbalanced data). Metode ini menghitung probabilitas berdasarkan data dari kelas lain (komplemen), sehingga hasil klasifikasi menjadi lebih stabil dan akurat. Berikut rumusnya:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[
+\hat{\theta}{ci} = \frac{\alpha + \sum{j:y_j \neq c} d_{ij}}{\alpha n + \sum_{j:y_j \neq c} \sum_k d_{kj}}
+\]</div>
+</section>
+<section id="perhitungan-menggunakan-knime">
+<h2>2. Perhitungan Menggunakan Knime<a class="headerlink" href="#perhitungan-menggunakan-knime" title="Link to this heading">#</a></h2>
+<p>Metode Naive Bayes dapat diimplementasikan menggunakan KNIME, dengan memanfaatkan tiga buah node, yaitu:</p>
+<ol class="arabic simple">
+<li><p>Node CSV Reader
+Node CSV Reader digunakan untuk membaca dan mengimpor data dari file berformat CSV (Comma-Separated Values) ke dalam lingkungan KNIME. Node ini berfungsi sebagai tahap awal dalam proses analisis data, di mana data yang telah dimuat selanjutnya dapat diproses pada node berikutnya.
+<img alt="original image" src="https://cdn.mathpix.com/snip/images/BNT7Zx3nJddTe17gIBGwX9TRRhZqXmfdNyfP-8Qa5eo.original.fullsize.png" /></p></li>
+<li><p>Node Missing Value
+Node Missing Value digunakan untuk mengatasi data yang kosong dengan cara mengganti atau mengisi nilai yang hilang agar dapat diproses lebih lanjut.
+<img alt="original image" src="https://cdn.mathpix.com/snip/images/8AXJTEP6isqsSU3WBPFxWDuBH9SRH8km4e41Rs6rblw.original.fullsize.png" /></p></li>
+<li><p>Python Script
+Node Python Script digunakan untuk menjalankan kode Python di dalam KNIME. Node ini memungkinkan pengguna melakukan pengolahan data, analisis, maupun penerapan algoritma seperti Naive Bayes secara fleksibel menggunakan library Python seperti pandas dan scikit-learn.
+<img alt="original image" src="https://cdn.mathpix.com/snip/images/8CRhy3zaOEKmXVTnTUgZG1cD-9n9DsAiTl7lo2jeOAY.original.fullsize.png" /></p></li>
+</ol>
+<section id="tabel-data-asuransi-kesehatan-sebelum-proses-klasifikasi">
+<h3>2.1 Tabel Data Asuransi Kesehatan Sebelum Proses Klasifikasi<a class="headerlink" href="#tabel-data-asuransi-kesehatan-sebelum-proses-klasifikasi" title="Link to this heading">#</a></h3>
+<p><img alt="original image" src="https://cdn.mathpix.com/snip/images/VVSdAUFX5TQvRK8BMDTvZLpEb4F5K8KykTE_UjS4YI4.original.fullsize.png" />
+Pada penelitian ini, atribut smoker digunakan sebagai variabel target (kelas).
+Variabel ini bersifat kategorikal dengan dua kelas, yaitu:</p>
+<ul class="simple">
+<li><p>yes → perokok</p></li>
+<li><p>no → bukan perokok</p></li>
+</ul>
+<p>Atribut lain digunakan sebagai fitur untuk melakukan prediksi, yaitu:</p>
+<ul class="simple">
+<li><p>age → usia individu</p></li>
+<li><p>sex → jenis kelamin</p></li>
+<li><p>bmi → indeks massa tubuh</p></li>
+<li><p>children → jumlah tanggungan</p></li>
+<li><p>region → wilayah tempat tinggal</p></li>
+<li><p>charges → biaya asuransi</p></li>
+</ul>
+</section>
+<section id="script-python">
+<h3>2.2 Script Python<a class="headerlink" href="#script-python" title="Link to this heading">#</a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>import knime.scripting.io as knio
+import pandas as pd
+from sklearn.model_selection import                train_test_split
+from sklearn.preprocessing import OneHotEncoder, StandardScaler
+from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import Pipeline
+from sklearn.naive_bayes import GaussianNB
+from sklearn.metrics import accuracy_score, classification_report
+
+# 1. Ambil data dari KNIME (ganti read_csv)
+df = knio.input_tables[0].to_pandas()
+
+# 2. Bersihkan nama kolom
+df.columns = df.columns.str.strip()
+
+# 3. Definisi kolom
+target_col       = &quot;smoker&quot;
+numerical_cols   = [&quot;age&quot;, &quot;bmi&quot;, &quot;charges&quot;]
+categorical_cols = [&quot;sex&quot;, &quot;children&quot;, &quot;region&quot;]
+
+X = df[numerical_cols + categorical_cols]
+y = df[target_col]
+
+# 4. Split data 80:20
+X_train, X_test, y_train, y_test = train_test_split(
+X, y, test_size=0.2, random_state=42)
+
+# 5. Preprocessing
+preprocessor = ColumnTransformer(
+transformers=[
+    (&quot;num&quot;, StandardScaler(), numerical_cols),
+    (&quot;cat&quot;, OneHotEncoder(handle_unknown=&quot;ignore&quot;), categorical_cols)
+])
+
+# 6. Model pipeline
+model = Pipeline(steps=[
+(&quot;preprocessing&quot;, preprocessor),
+(&quot;classifier&quot;, GaussianNB())
+])
+
+# 7. Training
+model.fit(X_train, y_train)
+
+# 8. Prediksi &amp; Evaluasi
+y_pred   = model.predict(X_test)
+accuracy = accuracy_score(y_test, y_pred) * 100
+
+print(f&quot;Accuracy: {accuracy:.2f}%&quot;)
+print(classification_report(y_test, y_pred))
+
+# 9. Output ke KNIME (wajib ada!)
+result_df = pd.DataFrame({
+&quot;Actual&quot;      : y_test.values,
+&quot;Predicted&quot;   : y_pred,
+})
+
+knio.output_tables[0] = knio.Table.from_pandas(result_df)
+</pre></div>
+</div>
+<section id="output">
+<h4>Output<a class="headerlink" href="#output" title="Link to this heading">#</a></h4>
+<p><img alt="original image" src="https://cdn.mathpix.com/snip/images/bZqA7IkLovteLsSKV7Lj2_jzNPOxsnQ84k18ypaiwTo.original.fullsize.png" /></p>
+<p>Berdasarkan hasil pengujian, model Naive Bayes menghasilkan nilai akurasi sebesar 93.28%, yang menunjukkan bahwa model mampu mengklasifikasikan data status perokok dengan tingkat ketepatan sebesar 93.28% dari total data uji. Nilai tersebut menunjukkan bahwa model memiliki kinerja yang cukup baik dalam melakukan klasifikasi.</p>
+</section>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengertian">1.1 Pengertian</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jenis-jenis-naive-bayes">1.2 Jenis-Jenis Naive Bayes:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perhitungan-menggunakan-knime">2. Perhitungan Menggunakan Knime</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tabel-data-asuransi-kesehatan-sebelum-proses-klasifikasi">2.1 Tabel Data Asuransi Kesehatan Sebelum Proses Klasifikasi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#script-python">2.2 Script Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#output">Output</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Kamaliyyatul Bararah
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
