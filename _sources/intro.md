@@ -1,6 +1,6 @@
 # 240411100211 Kamaliyyatul Bararah
 
-Check out the content pages bundled with this sample book to see more.
+Welcome! This repository contains my notes for the Data Mining course.
 
 ```{tableofcontents}
 ```
