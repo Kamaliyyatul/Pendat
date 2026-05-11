@@ -1,0 +1,693 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Decision Tree &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Analisa Data Menggunakan Decision Tree';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="1. Analisis Data Campuran Menggunakan Naive Bayes" href="Analisis%20Data%20Menggunakan%20Naive%20Bayes.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/picture.jpg" class="logo__image only-light" alt="My sample book - Home"/>
+    <img src="_static/picture.jpg" class="logo__image only-dark pst-js-only" alt="My sample book - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    240411100211 Kamaliyyatul Bararah
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Business%20Understanding.html">Business Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Data%20Understanding.html">Data Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Data%20Preparation.html">Data Preparation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Modelling.html">Modelling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Deploymen.html">Deploymen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tugas%20Missing%20Values.html">1. Missing Values dengan Metode WKNN</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="UTS.html">UTS | Analisa Kesuburan Tanah</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Analisis%20Data%20Menggunakan%20Naive%20Bayes.html">1. Analisis Data Campuran Menggunakan Naive Bayes</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Decision Tree</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FAnalisa Data Menggunakan Decision Tree.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Analisa Data Menggunakan Decision Tree.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Decision Tree</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konsep-dasar">1. Konsep Dasar</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#supervised-learning">1.1 Supervised Learning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#struktur-pohon-terbalik">1.2 Struktur Pohon Terbalik</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pemisahan-rekursif-recursive-partitioning">1.3 Pemisahan Rekursif (Recursive Partitioning)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aturan-keputusan-decision-rules">1.4 Aturan Keputusan (Decision Rules)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ukuran-pembangunan-menggunakan-gain-ratio">2. Ukuran Pembangunan Menggunakan Gain Ratio</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entropy">2.1 Entropy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#information-gain">2.2 Information Gain</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#split-information">2.3 Split Information</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gain-ratio">2.4 Gain Ratio</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-decision-tree-di-knime">3. Implementasi Decision Tree di Knime</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-csv-reader">3.1 Node CSV Reader</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-missing-value">3.2 Node Missing Value</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-table-partitioner">3.3 Node Table Partitioner</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-color-manager">3.3 Node Color Manager</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-color-appender">3.4 Node Color Appender</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-decision-tree-learner">3.5 Node Decision Tree Learner</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-decision-tree-predictor">3.6 Node Decision Tree Predictor</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-scorer">3.7 Node Scorer</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="decision-tree">
+<h1>Decision Tree<a class="headerlink" href="#decision-tree" title="Link to this heading">#</a></h1>
+<p>Decision Tree atau pohon keputusan adalah metode klasifikasi yang membentuk struktur seperti pohon untuk mengambil keputusan berdasarkan data. Metode ini bekerja dengan membagi data berdasarkan atribut tertentu hingga menghasilkan kelompok yang lebih homogen, di mana setiap cabang menunjukkan kondisi (aturan) dan setiap daun menunjukkan hasil akhir atau kelas.</p>
+<section id="konsep-dasar">
+<h2>1. Konsep Dasar<a class="headerlink" href="#konsep-dasar" title="Link to this heading">#</a></h2>
+<p>Decision Tree (Pohon Keputusan) merupakan algoritma klasifikasi yang memodelkan logika pengambilan keputusan dalam struktur yang menyerupai pohon. Berikut adalah komponen dan prinsip utamanya:</p>
+<section id="supervised-learning">
+<h3>1.1 Supervised Learning<a class="headerlink" href="#supervised-learning" title="Link to this heading">#</a></h3>
+<p>Decision Tree merupakan algoritma pembelajaran terarah (supervised learning), yaitu model yang dibangun menggunakan data latih yang sudah memiliki label atau target.</p>
+</section>
+<section id="struktur-pohon-terbalik">
+<h3>1.2 Struktur Pohon Terbalik<a class="headerlink" href="#struktur-pohon-terbalik" title="Link to this heading">#</a></h3>
+<p>Model ini disusun secara hierarkis dari atas ke bawah, yang terdiri dari:</p>
+<ul class="simple">
+<li><p>Root Node (Akar): Titik awal data yang
+terletak di bagian paling atas.</p></li>
+<li><p>Internal Node (Cabang): Titik percabangan berdasarkan pengujian fitur tertentu.</p></li>
+<li><p>Leaf Node (Daun): Titik akhir yang merepresentasikan hasil prediksi atau klasifikasi kelas.</p></li>
+</ul>
+</section>
+<section id="pemisahan-rekursif-recursive-partitioning">
+<h3>1.3 Pemisahan Rekursif (Recursive Partitioning)<a class="headerlink" href="#pemisahan-rekursif-recursive-partitioning" title="Link to this heading">#</a></h3>
+<p>Data dibagi secara bertahap berdasarkan atribut tertentu. Proses ini dilakukan berulang (rekursif) pada setiap cabang hingga data dalam cabang tersebut menjadi lebih homogen atau memiliki kelas yang sama.</p>
+</section>
+<section id="aturan-keputusan-decision-rules">
+<h3>1.4 Aturan Keputusan (Decision Rules)<a class="headerlink" href="#aturan-keputusan-decision-rules" title="Link to this heading">#</a></h3>
+<p>Hasil dari Decision Tree dapat dinyatakan dalam bentuk aturan IF-THEN, sehingga mudah dipahami dan diinterpretasikan dalam proses pengambilan keputusan.</p>
+</section>
+</section>
+<section id="ukuran-pembangunan-menggunakan-gain-ratio">
+<h2>2. Ukuran Pembangunan Menggunakan Gain Ratio<a class="headerlink" href="#ukuran-pembangunan-menggunakan-gain-ratio" title="Link to this heading">#</a></h2>
+<p>Untuk membangun pohon yang akurat, algoritma harus menentukan atribut mana yang paling tepat untuk dijadikan sebagai Root atau Node (cabang). Gain Ratio adalah kriteria pemilihan atribut yang digunakan untuk memastikan pemisahan data dilakukan secara efisien. Hubungan antara komponen-komponen dalam pembangunan pohon ini dapat dijelaskan sebagai berikut:</p>
+<section id="entropy">
+<h3>2.1 Entropy<a class="headerlink" href="#entropy" title="Link to this heading">#</a></h3>
+<p>Entropy merupakan ukuran yang digunakan untuk mengetahui tingkat ketidakpastian atau ketidakteraturan dalam suatu kumpulan data. Dalam algoritma Decision Tree, entropy digunakan untuk menentukan seberapa “campur” data dalam suatu node.
+Rumus:</p>
+<div class="math notranslate nohighlight">
+\[
+Entropy(t) = - \sum_{j} p(j \mid t) \log_{2} p(j \mid t)
+\]</div>
+<p>Keterangan:</p>
+<ul class="simple">
+<li><p>Entropy(t)  = nilai entropy pada data t</p></li>
+<li><p>p(j|t)      = probabilitas kemunculan kelas j pada data t</p></li>
+<li><p>log₂        = logaritma basis 2</p></li>
+<li><p>Σ           = penjumlahan seluruh probabilitas kelas</p></li>
+<li><p>j           = kelas atau kategori data</p></li>
+<li><p>t           = himpunan data / dataset</p></li>
+</ul>
+</section>
+<section id="information-gain">
+<h3>2.2 Information Gain<a class="headerlink" href="#information-gain" title="Link to this heading">#</a></h3>
+<p>Information Gain (Gain) adalah ukuran untuk mengetahui seberapa besar suatu atribut mampu mengurangi ketidakpastian (entropy) pada data. Rumus:</p>
+<div class="math notranslate nohighlight">
+\[
+Gain_{split} = Entropy(p) - \left( \sum_{i=1}^{k} \frac{n_i}{n} \cdot Entropy(i) \right)
+\]</div>
+<p>Keterangan:</p>
+<ul class="simple">
+<li><p>Gain_split   = nilai information gain dari suatu atribut</p></li>
+<li><p>Entropy(p)   = entropy total pada data sebelum dilakukan pemisahan</p></li>
+<li><p>n_i          = jumlah data pada partisi ke-i</p></li>
+<li><p>n            = jumlah seluruh data</p></li>
+<li><p>Entropy(i)   = nilai entropy pada partisi ke-i</p></li>
+<li><p>Σ            = penjumlahan seluruh partisi data</p></li>
+<li><p>k            = jumlah partisi atau kategori atribut</p></li>
+</ul>
+</section>
+<section id="split-information">
+<h3>2.3 Split Information<a class="headerlink" href="#split-information" title="Link to this heading">#</a></h3>
+<p>Split Information adalah ukuran yang menunjukkan seberapa besar suatu atribut membagi data menjadi beberapa bagian, dan digunakan dalam C4.5 untuk menghitung Gain Ratio.
+Rumus:</p>
+<div class="math notranslate nohighlight">
+\[
+SplitInfo = - \sum_{i=1}^{k} \frac{n_i}{n} \log_{2} \left( \frac{n_i}{n} \right)
+\]</div>
+<p>Keterangan:</p>
+<ul class="simple">
+<li><p>SplitInfo    = nilai split information suatu atribut</p></li>
+<li><p>n_i          = jumlah data pada partisi ke-i</p></li>
+<li><p>n            = jumlah seluruh data</p></li>
+<li><p>log₂         = logaritma basis 2</p></li>
+<li><p>Σ            = penjumlahan seluruh partisi data</p></li>
+<li><p>k            = jumlah partisi atau kategori atribut</p></li>
+</ul>
+</section>
+<section id="gain-ratio">
+<h3>2.4 Gain Ratio<a class="headerlink" href="#gain-ratio" title="Link to this heading">#</a></h3>
+<p>Gain Ratio adalah ukuran yang digunakan untuk memilih atribut terbaik sebagai pemisah dengan membandingkan Information Gain terhadap Split Information, sehingga menghasilkan pemilihan atribut yang lebih akurat dan lebih objektif.
+Rumus:</p>
+<div class="math notranslate nohighlight">
+\[
+GainRatio_{split} = \frac{Gain_{split}}{SplitInfo}
+\]</div>
+</section>
+</section>
+<section id="implementasi-decision-tree-di-knime">
+<h2>3. Implementasi Decision Tree di Knime<a class="headerlink" href="#implementasi-decision-tree-di-knime" title="Link to this heading">#</a></h2>
+<p>Implementasi algoritma Decision Tree dilakukan menggunakan aplikasi KNIME untuk mengklasifikasikan data berdasarkan atribut yang tersedia.</p>
+<p>Dataset ini berisi data terkait penilaian atau rekomendasi pendaftaran anak-anak ke sekolah taman kanak-kanak (nursery schools). Data ini mencakup berbagai aspek penilaian, mulai dari kondisi ekonomi keluarga, struktur sosial, hingga faktor kesehatan. Berdasarkan atribut seperti pekerjaan orang tua, kondisi perumahan, dan status keuangan, model ini bertujuan untuk menentukan tingkat rekomendasi yang tepat bagi setiap calon siswa, yaitu apakah mereka masuk ke dalam kategori Not Recommend, Recommend, atau Priority.</p>
+<p>Kolom health digunakan sebagai target atau class yang memiliki beberapa kategori, yaitu recommended, priority, dan not_recom. Dataset ini digunakan untuk melatih model agar dapat memprediksi kategori class berdasarkan atribut-atribut yang tersedia.</p>
+<p>Dataset Nursery dapat di akses melalui tautan berikut: <a class="reference external" href="https://www.kaggle.com/datasets/nimapourmoradi/nursery">Dataset</a></p>
+<p>Selanjutnya, proses implementasi akan dijelaskan melalui penggunaan node-node pada KNIME dalam membangun model Decision Tree.</p>
+<section id="node-csv-reader">
+<h3>3.1 Node CSV Reader<a class="headerlink" href="#node-csv-reader" title="Link to this heading">#</a></h3>
+<p>CSV Reader merupakan node pada KNIME yang digunakan untuk membaca dan mengimpor data dari file CSV ke dalam workflow KNIME. Node ini berfungsi sebagai tahap awal dalam proses pengolahan data, di mana data yang akan dianalisis terlebih dahulu dimasukkan ke dalam sistem KNIME melalui file berformat CSV.</p>
+<p><img alt="original image" src="https://cdn.mathpix.com/snip/images/QZ1Z1vqfEkDTp3fMTqp2eNLMVJSrv1sPb3EFXUuSuEc.original.fullsize.png" /></p>
+</section>
+<section id="node-missing-value">
+<h3>3.2 Node Missing Value<a class="headerlink" href="#node-missing-value" title="Link to this heading">#</a></h3>
+<p>Missing Value merupakan node pada KNIME yang digunakan untuk menangani data yang memiliki nilai kosong atau missing value. Pada penelitian ini, ditemukan sejumlah nilai kosong pada atribut Health. Node ini berfungsi untuk memperbaiki kualitas data sebelum proses analisis dilakukan.</p>
+<p><img alt="original image" src="https://cdn.mathpix.com/snip/images/qSoSyNbQhldMvAkIuaqN0irM-FDrSXGcImwb1sRzRR0.original.fullsize.png" /></p>
+</section>
+<section id="node-table-partitioner">
+<h3>3.3 Node Table Partitioner<a class="headerlink" href="#node-table-partitioner" title="Link to this heading">#</a></h3>
+<p>Node Table Partitioner digunakan untuk membagi data menjadi data training dan testing agar model yang dibangun dapat diuji dan dievaluasi dengan baik.</p>
+<p><img alt="original image" src="https://cdn.mathpix.com/snip/images/FlPhfJwgOg75MqrYziG0wR9T248kod7Ho4b0S73o67I.original.fullsize.png" /></p>
+</section>
+<section id="node-color-manager">
+<h3>3.3 Node Color Manager<a class="headerlink" href="#node-color-manager" title="Link to this heading">#</a></h3>
+<p>Node Color Manager digunakan untuk memberikan warna khusus pada kategori di kolom Health, sehingga perbedaan antar kelompok data menjadi lebih jelas dan hasil visualisasi model lebih mudah dipahami.
+<img alt="original image" src="https://cdn.mathpix.com/snip/images/-5UNzf31awjb75uPQKcsvllMawycOAXIWA7aaTzxspU.original.fullsize.png" /></p>
+</section>
+<section id="node-color-appender">
+<h3>3.4 Node Color Appender<a class="headerlink" href="#node-color-appender" title="Link to this heading">#</a></h3>
+<p>Node Color Appender digunakan untuk memasangkan skema warna yang sudah dibuat sebelumnya ke dalam tabel data, sehingga warna tersebut muncul secara permanen di kolom Health dan mempermudah kita saat melihat perbedaan data di setiap barisnya.
+<img alt="original image" src="https://cdn.mathpix.com/snip/images/GPNZ67sP4248xqww76oOKdFPg1kELNVFmFl4cj25NzA.original.fullsize.png" /></p>
+</section>
+<section id="node-decision-tree-learner">
+<h3>3.5 Node Decision Tree Learner<a class="headerlink" href="#node-decision-tree-learner" title="Link to this heading">#</a></h3>
+<p>Node Decision Tree Learner digunakan untuk membangun model keputusan dengan cara mempelajari pola pada data latih. Node ini bekerja menggunakan perhitungan Entropy dan Gain Ratio untuk menentukan aturan pemisah terbaik, sehingga sistem dapat mengklasifikasikan data ke dalam kategori Not Recommend, Recommend, atau Priority secara otomatis dan akurat.
+<img alt="original image" src="https://cdn.mathpix.com/snip/images/RojFwThfWLUbgYL_bi_ZtV5pVBzXrSqrdgeaH_RjU24.original.fullsize.png" /></p>
+</section>
+<section id="node-decision-tree-predictor">
+<h3>3.6 Node Decision Tree Predictor<a class="headerlink" href="#node-decision-tree-predictor" title="Link to this heading">#</a></h3>
+<p>Node Decision Tree Predictor berfungsi untuk menerapkan aturan keputusan yang telah dipelajari sebelumnya ke dalam data uji (testing). Node ini bertugas untuk memprediksi atau menebak kategori setiap baris data di kolom Health berdasarkan model yang sudah dibuat, sehingga kita bisa melihat seberapa akurat sistem dalam menentukan pilihan secara otomatis.
+<img alt="original image" src="https://cdn.mathpix.com/snip/images/c6tWftDoehxOWMw_0BFZhsyaBwJIhfAIjuQDyAYuotA.original.fullsize.png" /></p>
+</section>
+<section id="node-scorer">
+<h3>3.7 Node Scorer<a class="headerlink" href="#node-scorer" title="Link to this heading">#</a></h3>
+<p>Node Scorer digunakan untuk mengukur sejauh mana kebenaran atau akurasi dari model yang telah dibuat. Node ini akan membandingkan hasil prediksi dari sistem dengan data aslinya, sehingga kita bisa mengetahui persentase keberhasilan model dalam mengklasifikasikan data secara tepat.
+<img alt="original image" src="https://cdn.mathpix.com/snip/images/sQLkxqtV69eERzJojPwDzbXrUzssYyhQkaT2h7sWbcg.original.fullsize.png" /></p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Analisis%20Data%20Menggunakan%20Naive%20Bayes.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">1. Analisis Data Campuran Menggunakan Naive Bayes</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konsep-dasar">1. Konsep Dasar</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#supervised-learning">1.1 Supervised Learning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#struktur-pohon-terbalik">1.2 Struktur Pohon Terbalik</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pemisahan-rekursif-recursive-partitioning">1.3 Pemisahan Rekursif (Recursive Partitioning)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aturan-keputusan-decision-rules">1.4 Aturan Keputusan (Decision Rules)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ukuran-pembangunan-menggunakan-gain-ratio">2. Ukuran Pembangunan Menggunakan Gain Ratio</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entropy">2.1 Entropy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#information-gain">2.2 Information Gain</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#split-information">2.3 Split Information</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gain-ratio">2.4 Gain Ratio</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-decision-tree-di-knime">3. Implementasi Decision Tree di Knime</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-csv-reader">3.1 Node CSV Reader</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-missing-value">3.2 Node Missing Value</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-table-partitioner">3.3 Node Table Partitioner</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-color-manager">3.3 Node Color Manager</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-color-appender">3.4 Node Color Appender</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-decision-tree-learner">3.5 Node Decision Tree Learner</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-decision-tree-predictor">3.6 Node Decision Tree Predictor</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-scorer">3.7 Node Scorer</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Kamaliyyatul Bararah
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
