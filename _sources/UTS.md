@@ -1,10 +1,8 @@
 # UTS | Analisa Kesuburan Tanah
 
-### Nama : Kamaliyyatul Bararah
-
-### Nim : 240411100211
-
-### Kelas : Pendata B
+### Nama: Kamaliyyatul Bararah
+### NIM: 240411100211
+### Kelas: Pendata B
 
 ## Soal UTS
 
