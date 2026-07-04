@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Analisis Performa Mahasiswa Menggunakan Dataset Higher Education Students &#8212; My sample book</title>
+    <title>UAS | Analisis Performa Mahasiswa &#8212; My sample book</title>
   
   
   
@@ -182,7 +182,7 @@
 <li class="toctree-l1"><a class="reference internal" href="Analisa%20Data%20Menggunakan%20Linier%20Regression.html">Analisa Data Linier Regression</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Prediksi%20Kadar%20NO2%20di%20daerah%20Sumenep.html">Prediksi Kadar <span class="math notranslate nohighlight">\(NO_2\)</span> di daerah Sumenep Madura</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Analisa%20Data%20%28B%29%20Vic_Electricity.html">Analisa Data (B) vic_electricity</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Analisis Performa Mahasiswa Menggunakan Dataset Higher Education Students</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">UAS | Analisis Performa Mahasiswa</a></li>
 </ul>
 
     </div>
@@ -365,7 +365,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Analisis Performa Mahasiswa Menggunakan Dataset Higher Education Students</h1>
+    <h1>UAS | Analisis Performa Mahasiswa</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -375,22 +375,25 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan">1. Tujuan</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">2. Dataset</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepocessing-data">3. Prepocessing Data</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-memuat-dataset">a) Memuat Dataset</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-memeriksa-struktur-dataset">b) Memeriksa Struktur Dataset</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-memeriksa-missing-value">c) Memeriksa Missing Value</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-memeriksa-data-duplikat">d) Memeriksa Data Duplikat</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-performa-mahasiswa-menggunakan-dataset-higher-education-students">Analisis Performa Mahasiswa Menggunakan Dataset Higher Education Students</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan">1. Tujuan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">2. Dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prepocessing-data">3. Prepocessing Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-memuat-dataset">a) Memuat Dataset</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#b-memeriksa-struktur-dataset">b) Memeriksa Struktur Dataset</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c-memeriksa-missing-value">c) Memeriksa Missing Value</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#d-memeriksa-data-duplikat">d) Memeriksa Data Duplikat</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#explorating-data-eda">4. Explorating Data (EDA)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-distribusi-nilai-mahasiswa">a) Distribusi Nilai Mahasiswa</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#explorating-data-eda">4. Explorating Data (EDA)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-distribusi-nilai-mahasiswa">a) Distribusi Nilai Mahasiswa</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pemodelan">5. Pemodelan</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi">6. Evaluasi</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">7. Kesimpulan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pemodelan">5. Pemodelan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi">6. Evaluasi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">7. Kesimpulan</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -402,20 +405,22 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="analisis-performa-mahasiswa-menggunakan-dataset-higher-education-students">
-<h1>Analisis Performa Mahasiswa Menggunakan Dataset Higher Education Students<a class="headerlink" href="#analisis-performa-mahasiswa-menggunakan-dataset-higher-education-students" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="uas-analisis-performa-mahasiswa">
+<h1>UAS | Analisis Performa Mahasiswa<a class="headerlink" href="#uas-analisis-performa-mahasiswa" title="Link to this heading">#</a></h1>
+<section id="analisis-performa-mahasiswa-menggunakan-dataset-higher-education-students">
+<h2>Analisis Performa Mahasiswa Menggunakan Dataset Higher Education Students<a class="headerlink" href="#analisis-performa-mahasiswa-menggunakan-dataset-higher-education-students" title="Link to this heading">#</a></h2>
 <section id="tujuan">
-<h2>1. Tujuan<a class="headerlink" href="#tujuan" title="Link to this heading">#</a></h2>
+<h3>1. Tujuan<a class="headerlink" href="#tujuan" title="Link to this heading">#</a></h3>
 <p>Menganalisis faktor-faktor yang mempengaruhi nilai akhir mahasiswa (GRADE) dan membangun model klasifikasi untuk memprediksi performa akademik mahasiswa.</p>
 </section>
 <section id="dataset">
-<h2>2. Dataset<a class="headerlink" href="#dataset" title="Link to this heading">#</a></h2>
+<h3>2. Dataset<a class="headerlink" href="#dataset" title="Link to this heading">#</a></h3>
 <p>Dataset yabg digunakan adalah Higher Education Students Performance Evaluation yang berasal dari UCI Machine Learning Repository. Dataset Higher Education Students Performance Evaluation terdiri dari 145 data mahasiswa dan 33 atribut yang menggambarkan karakteristik mahasiswa, kondisi keluarga, kebiasaan belajar, serta performa akademik. Variabel GRADE digunakan sebagai target untuk merepresentasikan nilai akhir mahasiswa. Oleh karena itu, analisis pada dataset ini termasuk ke dalam tugas klasifikasi (classification) yang bertujuan memprediksi performa akademik mahasiswa. Algoritma yang digunakan dalam proses pemodelan adalah Decision Tree Classifier.</p>
 </section>
 <section id="prepocessing-data">
-<h2>3. Prepocessing Data<a class="headerlink" href="#prepocessing-data" title="Link to this heading">#</a></h2>
+<h3>3. Prepocessing Data<a class="headerlink" href="#prepocessing-data" title="Link to this heading">#</a></h3>
 <section id="a-memuat-dataset">
-<h3>a) Memuat Dataset<a class="headerlink" href="#a-memuat-dataset" title="Link to this heading">#</a></h3>
+<h4>a) Memuat Dataset<a class="headerlink" href="#a-memuat-dataset" title="Link to this heading">#</a></h4>
 <p>Kode berikut digunakan untuk membaca dataset CSV ke dalam DataFrame.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
@@ -427,7 +432,7 @@
 <img alt="original image" src="https://cdn.mathpix.com/snip/images/ZjrfBWRo8ik4d67Ep63qibGESK0cumUalljUw3k7XEs.original.fullsize.png" /></p>
 </section>
 <section id="b-memeriksa-struktur-dataset">
-<h3>b) Memeriksa Struktur Dataset<a class="headerlink" href="#b-memeriksa-struktur-dataset" title="Link to this heading">#</a></h3>
+<h4>b) Memeriksa Struktur Dataset<a class="headerlink" href="#b-memeriksa-struktur-dataset" title="Link to this heading">#</a></h4>
 <p>Kode berikut digunakan untuk melihat jumlah data, atribut, dan tipe data.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
 </pre></div>
@@ -437,7 +442,7 @@
 Dataset terdiri dari 145 baris data dan 33 atribut.</p>
 </section>
 <section id="c-memeriksa-missing-value">
-<h3>c) Memeriksa Missing Value<a class="headerlink" href="#c-memeriksa-missing-value" title="Link to this heading">#</a></h3>
+<h4>c) Memeriksa Missing Value<a class="headerlink" href="#c-memeriksa-missing-value" title="Link to this heading">#</a></h4>
 <p>Kode berikut digunakan untuk mengetahui apakah terdapat data yang kosong.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 </pre></div>
@@ -448,7 +453,7 @@ Dataset terdiri dari 145 baris data dan 33 atribut.</p>
 <p>Pada pengecekan missing value, tidak ditemukan missing value pada dataset.</p>
 </section>
 <section id="d-memeriksa-data-duplikat">
-<h3>d) Memeriksa Data Duplikat<a class="headerlink" href="#d-memeriksa-data-duplikat" title="Link to this heading">#</a></h3>
+<h4>d) Memeriksa Data Duplikat<a class="headerlink" href="#d-memeriksa-data-duplikat" title="Link to this heading">#</a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -460,9 +465,9 @@ Dataset terdiri dari 145 baris data dan 33 atribut.</p>
 </section>
 </section>
 <section id="explorating-data-eda">
-<h2>4. Explorating Data (EDA)<a class="headerlink" href="#explorating-data-eda" title="Link to this heading">#</a></h2>
+<h3>4. Explorating Data (EDA)<a class="headerlink" href="#explorating-data-eda" title="Link to this heading">#</a></h3>
 <section id="a-distribusi-nilai-mahasiswa">
-<h3>a) Distribusi Nilai Mahasiswa<a class="headerlink" href="#a-distribusi-nilai-mahasiswa" title="Link to this heading">#</a></h3>
+<h4>a) Distribusi Nilai Mahasiswa<a class="headerlink" href="#a-distribusi-nilai-mahasiswa" title="Link to this heading">#</a></h4>
 <p>Kode berikut digunakan untuk melihat distribusi nilai mahasiswa berdasarkan GRADE.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;GRADE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
 </pre></div>
@@ -482,7 +487,7 @@ Sebagian besar mahasiswa berada pada kategori Grade 1.</p>
 </section>
 </section>
 <section id="pemodelan">
-<h2>5. Pemodelan<a class="headerlink" href="#pemodelan" title="Link to this heading">#</a></h2>
+<h3>5. Pemodelan<a class="headerlink" href="#pemodelan" title="Link to this heading">#</a></h3>
 <p>Model yang digunakan dalam penelitian ini adalah Decision Tree, yaitu salah satu algoritma klasifikasi yang bekerja dengan membentuk struktur pohon keputusan berdasarkan atribut-atribut yang terdapat pada dataset. Pemodelan terdiri dari dua tahap:</p>
 <ol class="arabic simple">
 <li><p>Pembagian Data (Train-Test Split)</p></li>
@@ -516,7 +521,7 @@ Sebagian besar mahasiswa berada pada kategori Grade 1.</p>
 <p>Kode di atas digunakan untuk membuat model klasifikasi menggunakan algoritma Decision Tree. Model kemudian dilatih menggunakan data training (X_train dan y_train) untuk mempelajari pola yang terdapat pada dataset. Setelah proses pelatihan selesai, model digunakan untuk memprediksi nilai akhir mahasiswa pada data testing melalui fungsi predict(). Hasil prediksi tersebut selanjutnya dievaluasi menggunakan metrik accuracy untuk mengetahui tingkat ketepatan model dalam melakukan klasifikasi.</p>
 </section>
 <section id="evaluasi">
-<h2>6. Evaluasi<a class="headerlink" href="#evaluasi" title="Link to this heading">#</a></h2>
+<h3>6. Evaluasi<a class="headerlink" href="#evaluasi" title="Link to this heading">#</a></h3>
 <p>Kode berikut digunakan untuk menghitung nilai accuracy dari model yang telah dibuat.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">accuracy_score</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
 </pre></div>
@@ -529,8 +534,9 @@ Sebagian besar mahasiswa berada pada kategori Grade 1.</p>
 <p>Berdasarkan hasil pengujian, model menghasilkan nilai accuracy sebesar 0,2069 atau 20,69%. Hasil tersebut menunjukkan bahwa model mampu memprediksi nilai akhir mahasiswa dengan tingkat ketepatan sebesar 20,69%. Nilai akurasi yang masih rendah menunjukkan bahwa model belum dapat mengklasifikasikan data dengan baik dan masih memiliki keterbatasan dalam mengenali pola pada dataset.</p>
 </section>
 <section id="kesimpulan">
-<h2>7. Kesimpulan<a class="headerlink" href="#kesimpulan" title="Link to this heading">#</a></h2>
+<h3>7. Kesimpulan<a class="headerlink" href="#kesimpulan" title="Link to this heading">#</a></h3>
 <p>Berdasarkan hasil analisis, dataset Higher Education Students Performance Evaluation dapat digunakan untuk penerapan teknik klasifikasi dalam penambangan data. Proses analisis dilakukan melalui tahap preprocessing, eksplorasi data, pemodelan menggunakan Decision Tree, dan evaluasi model. Hasil pengujian menunjukkan bahwa model memperoleh nilai accuracy sebesar 20,69% dalam memprediksi nilai akhir mahasiswa (GRADE).</p>
+</section>
 </section>
 </section>
 
@@ -591,22 +597,25 @@ Sebagian besar mahasiswa berada pada kategori Grade 1.</p>
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan">1. Tujuan</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">2. Dataset</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepocessing-data">3. Prepocessing Data</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-memuat-dataset">a) Memuat Dataset</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-memeriksa-struktur-dataset">b) Memeriksa Struktur Dataset</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-memeriksa-missing-value">c) Memeriksa Missing Value</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-memeriksa-data-duplikat">d) Memeriksa Data Duplikat</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-performa-mahasiswa-menggunakan-dataset-higher-education-students">Analisis Performa Mahasiswa Menggunakan Dataset Higher Education Students</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan">1. Tujuan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">2. Dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prepocessing-data">3. Prepocessing Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-memuat-dataset">a) Memuat Dataset</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#b-memeriksa-struktur-dataset">b) Memeriksa Struktur Dataset</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c-memeriksa-missing-value">c) Memeriksa Missing Value</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#d-memeriksa-data-duplikat">d) Memeriksa Data Duplikat</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#explorating-data-eda">4. Explorating Data (EDA)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-distribusi-nilai-mahasiswa">a) Distribusi Nilai Mahasiswa</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#explorating-data-eda">4. Explorating Data (EDA)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-distribusi-nilai-mahasiswa">a) Distribusi Nilai Mahasiswa</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pemodelan">5. Pemodelan</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi">6. Evaluasi</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">7. Kesimpulan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pemodelan">5. Pemodelan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi">6. Evaluasi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">7. Kesimpulan</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

@@ -1,4 +1,6 @@
-# Analisis Performa Mahasiswa Menggunakan Dataset Higher Education Students
+# UAS | Analisis Performa Mahasiswa
+
+## Analisis Performa Mahasiswa Menggunakan Dataset Higher Education Students
 
 ### 1. Tujuan
 
