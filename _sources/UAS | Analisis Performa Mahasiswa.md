@@ -8,7 +8,8 @@ Menganalisis faktor-faktor yang mempengaruhi nilai akhir mahasiswa (GRADE) dan m
 
 ### 2. Dataset
 
-Dataset yabg digunakan adalah Higher Education Students Performance Evaluation yang berasal dari UCI Machine Learning Repository. Dataset Higher Education Students Performance Evaluation terdiri dari 145 data mahasiswa dan 33 atribut yang menggambarkan karakteristik mahasiswa, kondisi keluarga, kebiasaan belajar, serta performa akademik. Variabel GRADE digunakan sebagai target untuk merepresentasikan nilai akhir mahasiswa. Oleh karena itu, analisis pada dataset ini termasuk ke dalam tugas klasifikasi (classification) yang bertujuan memprediksi performa akademik mahasiswa. Algoritma yang digunakan dalam proses pemodelan adalah Decision Tree Classifier.
+Dataset yabg digunakan adalah Higher Education Students Performance Evaluation yang berasal dari UCI Machine Learning Repository. Dataset Higher Education Students Performance Evaluation terdiri dari 145 data mahasiswa dan 31 fitur yang menggambarkan karakteristik mahasiswa, kondisi keluarga, kebiasaan belajar, serta performa akademik. Variabel GRADE digunakan sebagai target untuk merepresentasikan nilai akhir mahasiswa. Oleh karena itu, analisis pada dataset ini termasuk ke dalam tugas klasifikasi (classification) yang bertujuan memprediksi performa akademik mahasiswa. Algoritma yang digunakan dalam proses pemodelan adalah Decision Tree Classifier.
+Berikut untuk link web datasetnya: https://archive.ics.uci.edu/dataset/856/higher+education+students+performance+evaluation
 
 ### 3. Prepocessing Data
 
